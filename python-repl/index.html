@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="referrer" content="no-referrer" />
+  </head>
+  <meta
+    http-equiv="origin-trial"
+    content="Aq6vv/4syIkcyMszFgCc9LlH0kX88jdE7SXfCFnh2RQN0nhhL8o6PCQ2oE3a7n3mC7+d9n89Repw5HYBtjarDw4AAAB3eyJvcmlnaW4iOiJodHRwczovL3B5b2RpZGUub3JnOjQ0MyIsImZlYXR1cmUiOiJXZWJBc3NlbWJseUpTUHJvbWlzZUludGVncmF0aW9uIiwiZXhwaXJ5IjoxNzMwMjQ2Mzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZX0="
+  />
+  <meta
+    http-equiv="origin-trial"
+    content="Ai8IXb0XqedlM/Q2guWXFfBkKiYY9uaPZpdjHqc8y0ZvpAfK9SKzp/dIuFH+txG/HEKxt59uIkk39hhWrhNgbw4AAABieyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjgwMDAiLCJmZWF0dXJlIjoiV2ViQXNzZW1ibHlKU1Byb21pc2VJbnRlZ3JhdGlvbiIsImV4cGlyeSI6MTczMDI0NjM5OX0="
+  />
+  <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery.terminal@2.44.1/js/jquery.terminal.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery.terminal@2.44.1/js/unix_formatting.min.js"></script>
+  <link
+    href="https://cdn.jsdelivr.net/npm/jquery.terminal@2.44.1/css/jquery.terminal.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>"
+    rel="icon"
+  />
+  <style>
+    .terminal {
+      --size: 1.5;
+      --color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(0, 0, 0, 0);
+      text-shadow: 
+        -2px -2px 0 black,
+        -1px -2px 0 black,
+         0px -2px 0 black,
+         1px -2px 0 black,
+         2px -2px 0 black,
+        -2px -1px 0 black,
+        -2px  0px 0 black,
+        -2px  1px 0 black,
+        -2px  2px 0 black,
+        -1px  2px 0 black,
+         0px  2px 0 black,
+         1px  2px 0 black,
+         2px  2px 0 black,
+         2px  1px 0 black,
+         2px  0px 0 black,
+         2px -1px 0 black,
+         2px -2px 0 black;
+    }
+    .noblink {
+      --animation: terminal-none;
+    }
+    </style>
+  <script defer data-domain="pyodide.org" src="https://plausible.io/js/plausible.js"></script>
+  <body hidden>
+    <div id="terminal-container">
+    </div>
+    <div id="container" class="container">
+      <transition-group class="comments" name="comment" tag="div">
+        <div
+          v-for="(comment, index) in comments"
+          :class="getClassName(comment)"
+          :key="comment.data.id"
+          :style="getStyle(comment)"
+          :data-service="comment.service"
+          :data-user="comment.data.name"
+          :data-gift="comment.data.hasGift"
+          :data-owner="comment.data.isOwner"
+          :data-moderator="comment.data.isModerator"
+          :data-member="comment.data.isMember"
+          :data-is-new="comment.data.isFirstTime"
+          :data-service-name="comment.name"
+          :data-service-id="comment.id"
+          :data-paid="!!comment.data.paidText"
+        >
+          <div class="avatar">
+            <img alt="" v-if="comment.data.profileImage" :src="comment.data.profileImage" />
+          </div>
+          <div class="comment-block">
+            <div class="name">
+              {{comment.data.displayName}}
+              <div
+                class="badge"
+                v-for="(badge, index) in comment.data.badges"
+                :key="index"
+              >
+                <img
+                  v-if="badge.url"
+                  :alt="badge.label"
+                  :src="badge.url"
+                  :title="badge.label"
+                />
+              </div>
+            </div>
+            <div class="comment-body">
+              <div v-if="comment.data.paidText" class="paid-text">
+                <strong>{{comment.data.paidText}}</strong>
+              </div>
+              <div v-if="comment.data.membership" class="paid-text">
+                {{comment.data.membership.sub}} {{comment.data.membership.primary}}
+              </div>
+              <div class="comment-text" v-html="comment.data.comment"></div>
+            </div>
+          </div>
+        </div>
+      </transition-group>
+    </div>
+    <script src="../__origin/js/vue.min.js"></script>
+    <script src="../__origin/js/onesdk.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
